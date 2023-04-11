@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-rational-order",
+    "stylelint-prettier/recommended"
+  ],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-scss"
+  ],
+  "rules": {
+    "order/order": ["custom-properties", "declarations"],
+    "no-descending-specificity": true,
+    "unit-allowed-list": ["px", "%", "deg", "fr", "vw", "vh"],
+    "import-notation": "string"
+  }
+}

@@ -1,0 +1,66 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "airbnb-base",
+        "airbnb-typescript/base",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "react", "react-hooks", "@typescript-eslint", "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": "error",
+        "react/react-in-jsx-scope": "off",
+        "camelcase": "error",
+        "spaced-comment": "error",
+        "no-duplicate-imports": "error",
+        "max-len": [
+            "error",
+            {
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true,
+                "ignoreRegExpLiterals": true,
+                "ignorePattern": "\\s*import\\s*",
+                "code": 80
+            }
+        ],
+        "newline-after-var": [
+            "error", "always"
+        ],
+        "no-console": [
+            "error", { "allow": [
+                "warn", "info", "error"
+            ] }],
+        "no-use-before-define": [
+            "error",
+            { "functions": false, "variables": true, "classes": true }
+        ],
+        "no-param-reassign": ["error", { "props": false }],
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-unused-vars": "error",
+        "class-methods-use-this": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "typescript": {}
+        }
+    },
+    "ignorePatterns": [
+        "src/assets/",
+        "node_modules/*",
+        "webpack.config.js"
+    ]
+}
