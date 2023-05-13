@@ -1,30 +1,11 @@
+// Variables and mixins
+@import './styles/variables.scss';
+
 body,
 html {
+  @include body-font();
+
+  font-size: 16px;
   padding: 10px;
   transform: rotate(0deg);
-}
-
-::placeholder {
-  color: gray;
-}
-
-.page {
-  top: 1px;
-  display: flex;
-  width: 100px;
-  padding: 0.1px 2px 3px 4px;
-  color: black;
-  background-size: 0, 0;
-}
-
-[data-test='true'] {
-  color: red;
-}
-
-.page::before {
-  color: red;
-}
-
-.test {
-  color: #fff;
 }
