@@ -3,3 +3,27 @@
 
 // Variables and mixins
 @import './styles/variables.scss';
+
+h1 {
+  @include title-h1();
+}
+
+h2 {
+  @include title-h2();
+}
+
+h3 {
+  @include title-h3();
+}
+
+h4 {
+  @include title-h4();
+}
+
+h5 {
+  @include title-h5();
+}
+
+h6 {
+  @include title-h6();
+}
