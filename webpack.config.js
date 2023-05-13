@@ -7,7 +7,6 @@ const IMAGE_FILES_PATTERN = /\.(jpg|jpeg|png|gif|svg)$/i;
 
 const config =  {
   entry: [
-    'react-hot-loader/patch',
     path.resolve(__dirname, './src/index.tsx')
   ],
   output: {
@@ -92,9 +91,6 @@ const config =  {
       '.ts',
       '.js'
     ],
-    alias: {
-      'react-dom': '@hot-loader/react-dom'
-    }
   },
   optimization: {
     runtimeChunk: 'single',
@@ -118,7 +114,7 @@ module.exports = (env, argv) => {
     // Cannot use 'contenthash' when hot reloading is enabled.
     config.output.filename = 'js/[name].[fullhash].js';
   }
-  
+
   if(argv.mode === 'production') {
     config.output.filename = 'js/[name].[contenthash].js';
     config.optimization.minimize = true;

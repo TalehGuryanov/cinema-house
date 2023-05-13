@@ -1,4 +1,3 @@
-import { hot } from 'react-hot-loader/root';
 import * as React from 'react';
 
 import style from './test.module.scss';
@@ -10,4 +9,4 @@ const Test: React.FC = () => (
   </div>
 );
 
-export default hot(Test);
+export default Test;
