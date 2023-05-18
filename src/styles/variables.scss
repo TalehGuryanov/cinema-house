@@ -1,0 +1,128 @@
+// Breakpoint variables
+$max: max-width;
+$small: 680px;
+$medium: 1024px;
+$large: 1325px;
+$content-width: 1440px;
+
+// Color variables
+$colorWhite: #fff;
+$colorBlack: #000;
+
+// Z-index variables
+$zIndexNormal: 1;
+$zIndexMedium: 5;
+$zIndexLarge: 9;
+$zIndexMenu: 99;
+$zIndexDropdown: 100;
+$zIndexModal: 999;
+$zIndexMax: 9999;
+
+// Breakpoint mixin
+@mixin media-query($viewport) {
+  @media screen and ($max: $viewport) {
+    @content;
+  }
+}
+
+// Flexible list mixins
+@mixin flex-list($offsets, $wrap: 'true') {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(#{($offsets)} * 2 + 100%);
+  margin-right: -$offsets;
+  margin-left: -$offsets;
+
+  @if $wrap == 'false' {
+    flex-wrap: nowrap;
+  }
+}
+
+@mixin flex-item($ratio: 1, $offsets) {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% * #{$ratio} - (#{($offsets)} * 2));
+  margin-right: $offsets;
+  margin-left: $offsets;
+}
+
+// Animation mixin
+@mixin media-available-motion() {
+  transition: none;
+  animation: none;
+
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+// Font mixins
+@mixin main-font($thickness: 400) {
+  font-weight: $thickness;
+  font-family: Montserrat, 'Open Sans', sans-serif;
+  font-style: normal;
+}
+
+@mixin body-font($thickness: 400) {
+  font-weight: $thickness;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+}
+
+@mixin title-h1() {
+  @include main-font(700);
+
+  font-size: 42px;
+  line-height: 124%;
+
+  @include media-query($medium) {
+    font-size: 32px;
+  }
+}
+
+@mixin title-h2() {
+  @include main-font(700);
+
+  font-size: 36px;
+  line-height: 124%;
+
+  @include media-query($medium) {
+    font-size: 28px;
+  }
+}
+
+@mixin title-h3() {
+  @include main-font(700);
+
+  font-size: 32px;
+  line-height: 124%;
+
+  @include media-query($medium) {
+    font-size: 26px;
+  }
+}
+
+@mixin title-h4() {
+  @include main-font(700);
+
+  font-size: 28px;
+  line-height: 124%;
+
+  @include media-query($medium) {
+    font-size: 22px;
+  }
+}
+
+@mixin title-h5() {
+  @include main-font(700);
+
+  font-size: 20px;
+  line-height: 124%;
+}
+
+@mixin title-h6() {
+  @include main-font(700);
+
+  font-size: 16px;
+  line-height: 124%;
+}

@@ -1,6 +1,7 @@
 {
   "extends": [
     "stylelint-config-standard",
+    "stylelint-config-standard-scss",
     "stylelint-config-rational-order",
     "stylelint-prettier/recommended"
   ],
@@ -12,6 +13,7 @@
     "order/order": ["custom-properties", "declarations"],
     "no-descending-specificity": true,
     "unit-allowed-list": ["px", "%", "deg", "fr", "vw", "vh"],
-    "import-notation": "string"
+    "import-notation": "string",
+    "scss/dollar-variable-pattern": null
   }
 }
