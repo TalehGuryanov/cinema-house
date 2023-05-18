@@ -23,6 +23,7 @@ secrets.json
 .ruby-version
 yarn.lock
 *.orig
+package-lock.json
 
 # Packages #
 ############
