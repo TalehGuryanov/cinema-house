@@ -24,6 +24,7 @@ secrets.json
 yarn.lock
 *.orig
 package-lock.json
+.env.local
 
 # Packages #
 ############

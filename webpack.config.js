@@ -3,7 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require("autoprefixer");
+const webpack = require("webpack");
 const IMAGE_FILES_PATTERN = /\.(jpg|jpeg|png|gif|svg)$/i;
+const dotenv = require('dotenv').config({ path: __dirname + '/.env.local' });
 
 const config =  {
   entry: [
@@ -83,6 +85,9 @@ const config =  {
           to: path.resolve(__dirname, 'dist/assets'),
         },
       ],
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.parsed),
     }),
   ],
   resolve: {
