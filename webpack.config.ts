@@ -1,16 +1,17 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const autoprefixer = require("autoprefixer");
-const webpack = require("webpack");
-const IMAGE_FILES_PATTERN = /\.(jpg|jpeg|png|gif|svg)$/i;
-const dotenv = require('dotenv').config({ path: __dirname + '/.env.local' });
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import autoprefixer from 'autoprefixer';
+import dotenv from 'dotenv';
 
-const config =  {
-  entry: [
-    path.resolve(__dirname, './src/index.tsx')
-  ],
+dotenv.config({ path: `${__dirname}/.env.local` });
+
+const IMAGE_FILES_PATTERN = /\.(jpg|jpeg|png|gif|svg)$/i;
+
+const config = {
+  entry: [path.resolve(__dirname, 'src', 'index.tsx')],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].js',
@@ -21,7 +22,7 @@ const config =  {
     rules: [
       {
         include: path.resolve(__dirname, 'src'),
-        test: /\.ts(x)?$/,
+        test: /\.tsx?$/,
         use: 'ts-loader',
       },
       {
@@ -33,24 +34,24 @@ const config =  {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: "[path][name]__[local]--[hash:base64:5]",
-                localIdentContext: path.resolve(__dirname, "src"),
+                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                localIdentContext: path.resolve(__dirname, 'src'),
               },
               importLoaders: 1,
-            }
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: [autoprefixer()]
-              }
-            }
+                plugins: [autoprefixer()],
+              },
+            },
           },
           {
-            loader: 'sass-loader'
+            loader: 'sass-loader',
           },
-        ]
+        ],
       },
       {
         include: path.resolve(__dirname, 'src/assets'),
@@ -58,44 +59,40 @@ const config =  {
         use: {
           loader: 'url-loader',
         },
-      }
-    ]
+      },
+    ],
   },
   devtool: 'inline-source-map',
   devServer: {
-    'static': {
-      directory: path.join(__dirname, './dist')
+    static: {
+      directory: path.join(__dirname, './dist'),
     },
     port: 3000,
-    hot: true
+    hot: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Index',
-      template: 'public/index.html',
-      filename: "index.html"
+      template: path.resolve(__dirname, 'public', 'index.html'),
+      filename: 'index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css'
+      filename: 'css/[name].css',
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/assets'),
-          to: path.resolve(__dirname, 'dist/assets'),
+          from: path.resolve(__dirname, 'src', 'assets'),
+          to: path.resolve(__dirname, 'dist', 'assets'),
         },
       ],
     }),
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify(dotenv.parsed),
+      'process.env': JSON.stringify(process.env),
     }),
   ],
   resolve: {
-    extensions: [
-      '.tsx',
-      '.ts',
-      '.js'
-    ],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   optimization: {
     runtimeChunk: 'single',
@@ -104,23 +101,24 @@ const config =  {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
+          chunks: 'all',
+        },
+      },
+    },
+    minimize: false,
   },
   watchOptions: {
     ignored: '**/node_modules',
   },
 };
 
-module.exports = (env, argv) => {
+module.exports = (env: any, argv: any) => {
   if (argv.hot) {
     // Cannot use 'contenthash' when hot reloading is enabled.
     config.output.filename = 'js/[name].[fullhash].js';
   }
 
-  if(argv.mode === 'production') {
+  if (argv.mode === 'production') {
     config.output.filename = 'js/[name].[contenthash].js';
     config.optimization.minimize = true;
   }
