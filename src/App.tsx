@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import apiRequest from './utils/apiRequest';
 import { TMovie } from './services/types/movieType';
 
@@ -9,7 +8,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     apiRequest(endPoint, '').then(({ results }) => {
-      if (results.length) {
+      if (results && results.length) {
         setPopularMovies(results);
       }
     });

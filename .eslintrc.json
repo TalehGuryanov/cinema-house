@@ -54,7 +54,12 @@
         "class-methods-use-this": "off",
         "import/no-import-module-exports": ["error", {
             "exceptions": ["**/*/webpack.config.ts"]
-        }]
+        }],
+        "import/no-extraneous-dependencies": ["error",
+            {
+                "devDependencies": true
+            }
+        ]
     },
     "settings": {
         "import/resolver": {
@@ -63,7 +68,6 @@
     },
     "ignorePatterns": [
         "src/assets/",
-        "node_modules/*",
-        "webpack.config.js"
+        "node_modules/*"
     ]
 }

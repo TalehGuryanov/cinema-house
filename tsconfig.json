@@ -9,12 +9,13 @@
         "moduleResolution": "node",
         "target": "es5",
         "allowJs": true,
-        "jsx": "react",
+        "jsx": "react-jsx",
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
     },
     "include": [
         "./src/**/*",
+        "./config/**/*",
         "./webpack.config.ts"
     ],
     "ts-node": {
