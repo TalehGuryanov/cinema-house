@@ -5,14 +5,22 @@
         "strict": true,
         "noImplicitReturns": true,
         "noImplicitAny": true,
-        "module": "es6",
+        "module": "ESNext",
         "moduleResolution": "node",
         "target": "es5",
         "allowJs": true,
-        "jsx": "react",
+        "jsx": "react-jsx",
         "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
     },
     "include": [
-        "./src/**/*"
-    ]
+        "./src/**/*",
+        "./config/**/*",
+        "./webpack.config.ts"
+    ],
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    }
 }
